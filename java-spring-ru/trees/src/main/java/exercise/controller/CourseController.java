@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
 
 @RestController
 @RequestMapping("/courses")
@@ -33,7 +30,7 @@ public class CourseController {
     }
 
     // BEGIN
-    @GetMapping(path = "/{id}/previous/")
+    @GetMapping(path = "/{id}/previous")
     public List<Course> getPreviousCourses(@PathVariable long id) {
         String path = courseRepository.findById(id).getPath();
         return path != null ? Arrays.stream(path.split("\\."))
@@ -41,7 +38,7 @@ public class CourseController {
                 .map(course_id -> courseRepository.findById(course_id))
                 .map(Optional::get)
                 .toList()
-                : null;
+                : List.of();
     }
     // END
 
