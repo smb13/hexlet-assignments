@@ -34,7 +34,7 @@ public class CityController {
         if (name != null) {
             cities = cityRepository.findByNameStartingWithIgnoreCase(name).orElseThrow(() -> new CityNotFoundException("City begins " + name + " was not found"));
         } else {
-            cities = cityRepository.findByNameNotNullOrderByName().orElseThrow(() -> new CityNotFoundException("City begins " + name + " was not found"));
+            cities = cityRepository.findAllByOrderByName().orElseThrow(() -> new CityNotFoundException("City begins " + name + " was not found"));
         }
         return cities.stream()
                 .map(city -> city.getName())

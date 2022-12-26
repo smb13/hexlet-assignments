@@ -33,7 +33,7 @@ public class WeatherService {
         try {
             result = objectMapper.readValue(response, Map.class);
         } catch (Exception e) {
-            System.out.println(e.getStackTrace());
+            throw new RuntimeException();
         }
         return result;
     }

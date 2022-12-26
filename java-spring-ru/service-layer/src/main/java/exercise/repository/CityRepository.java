@@ -12,6 +12,6 @@ public interface CityRepository extends CrudRepository<City, Long> {
     // BEGIN
     Optional<List<City>> findByNameStartingWithIgnoreCase(String name);
 
-    Optional<List<City>> findByNameNotNullOrderByName();
+    Optional<List<City>> findAllByOrderByName();
     // END
 }
